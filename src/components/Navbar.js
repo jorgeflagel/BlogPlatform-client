@@ -41,17 +41,17 @@ export default function Navbar(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
-            <Link className="navbar-brand p-3" to="/">A Blog Platform <br/>about Technology</Link>
-            <button ref={navIcon} className="navbar-toggler ms-auto" type="button" onClick={() => toggleMenu(!isMenuShowing)} aria-label="Toggle navigation"
+            <Link className="navbar-brand p-3" to="/">Your Blog <br/>Platform</Link>
+            <button ref={navIcon} className="navbar-toggler ms-auto me-3" type="button" onClick={() => toggleMenu(!isMenuShowing)} aria-label="Toggle navigation"
               >
               <span className="navbar-toggler-icon"></span>
             </button>
             
             {props.isLogged ? 
                     <Offcanvas logout={logout} userInfo={props.userInfo}/>
-                : <div className="ms-auto order-lg-last">
-                    <button type="button" className="btn btn-outline-primary mx-2" onClick={() => history.push('/login')}>Login</button>
-                    <button type="button" className="btn btn-outline-info" onClick={() => history.push('/signup')}>Signup</button>
+                : <div className="order-lg-last d-flex flex-column flex-md-row">
+                    <button type="button" className="btn btn-outline-primary m-1" onClick={() => history.push('/login')}>Login</button>
+                    <button type="button" className="btn btn-outline-info m-1" onClick={() => history.push('/signup')}>Signup</button>
                   </div>
             }
             <div ref={node} className={`collapse navbar-collapse ${isMenuShowing ? 'show' : ''}`} id="navbarNav">
