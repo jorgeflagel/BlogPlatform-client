@@ -38,7 +38,7 @@ export default function RemoveArticle() {
             setIsLoading(false);
             setError(err.message);
         })
-    }, [])
+    }, [id])
 
     const handleRemove = async (e) => {
         setError(null);

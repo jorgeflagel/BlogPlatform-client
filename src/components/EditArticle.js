@@ -29,7 +29,7 @@ export default function EditArticle() {
             }
         })
         .catch(err => setError(err.message))
-    }, [])
+    }, [id])
 
     const handleSubmit = (e) => {
         setError(null);

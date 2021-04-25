@@ -30,7 +30,7 @@ export default function Article({ userInfo }) {
             }
         })
         .catch(err => setError(err.message))
-    }, [])
+    }, [id])
 
     return( 
         <div className='container-fluid'>

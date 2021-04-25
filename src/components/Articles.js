@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import Markdown from 'markdown-to-jsx';
 
 import IsLoading from './IsLoading';
 import Breadcrumb from './Breadcrumb';
@@ -31,7 +30,7 @@ export default function Articles({ userInfo, query, showBreadcrumb }) {
             setIsLoading(false);
             setError(err.message);
         });
-    }, [])
+    }, [query])
 
     const articleList = articles.map((article) =>
             <li class="list-group-item" key={article._id}>

@@ -13,7 +13,6 @@ export default function User({userInfo}) {
     let [user, setUser] = useState(null);
 
     useEffect(() => {
-        setTimeout(function(){
         fetch(process.env.REACT_APP_SERVER_URL + `users/${username}`, {
             method: 'GET',
             headers: {
@@ -28,7 +27,7 @@ export default function User({userInfo}) {
                 setUser(data);
             }
         })
-    }, 300)}, [])
+    }, [username])
 
 
     return (
