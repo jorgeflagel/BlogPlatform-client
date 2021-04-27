@@ -33,7 +33,7 @@ export default function Articles({ userInfo, query, showBreadcrumb }) {
     }, [query])
 
     const articleList = articles.map((article) =>
-            <li class="list-group-item" key={article._id}>
+            <li className="list-group-item" key={article._id}>
                 <div className="row align-items-center">
                     <div className='col-12 col-md-9'>
                         <p><Link to={`/users/${article.author.username}`}>@{article.author.username}</Link></p>

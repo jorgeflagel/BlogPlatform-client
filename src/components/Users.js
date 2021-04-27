@@ -35,7 +35,7 @@ export default function Users() {
     }, [])
 
     const userList = users.map((user) =>
-        <li class="list-group-item" key={user._id}>
+        <li className="list-group-item" key={user._id}>
                 <div className="row align-items-center">
                     <div className='col-12 col-md-9'>
                         <h3><Link to={`/users/${user.username}`}>@{user.username}</Link></h3>
@@ -56,7 +56,7 @@ export default function Users() {
             {users.length !== 0 &&
                 <div className='container'>
                     <h1>Users</h1>
-                    <ul class="list-group list-group-flush text-start">
+                    <ul className="list-group list-group-flush text-start">
                         {userList}
                     </ul>
                 </div>

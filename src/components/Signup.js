@@ -50,12 +50,12 @@ export default function Signup(props) {
                 <input type="email" className="form-control" id="email" placeholder="name@example.com"
                     name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
                 <input type="password" className="form-control" id="password" placeholder="Your password..."
                     name="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
                 <label htmlFor="passwordConfirmation" className="form-label">Confirm password</label>
                 <input type="password" className="form-control" id="passwordConfirmation" placeholder="Confirm password..."
                     name="passwordConfirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} required/>
