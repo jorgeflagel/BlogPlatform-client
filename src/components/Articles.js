@@ -65,7 +65,7 @@ export default function Articles({ userInfo, query, showBreadcrumb }) {
             {articles.length
                 ?   <div className='container'>
                         <h1>Articles</h1>
-                        <ul class="list-group list-group-flush text-start">
+                        <ul className="list-group list-group-flush text-start">
                             {articleList}
                         </ul>
                     </div>
