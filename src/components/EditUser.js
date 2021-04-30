@@ -16,7 +16,7 @@ export default function EditUser({ userInfo, setUserInfo }) {
         setError(null);
         e.preventDefault();
         let token = window.localStorage.getItem('blog-webpage-jwt');
-        fetch(process.env.REACT_APP_SERVER_URL + + "myuser", {
+        fetch(process.env.REACT_APP_SERVER_URL + "myuser", {
             method: 'PUT',
             body: JSON.stringify({username, email, position, resume}),
             headers: {
