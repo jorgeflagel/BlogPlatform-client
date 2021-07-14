@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Markdown from 'markdown-to-jsx';
 
-import IsLoading from './IsLoading'
-import Breadcrumb from './Breadcrumb';
-import Comments from './Comments';
-import NewComment from './NewComment';
+import IsLoading from '../components/IsLoading'
+import Breadcrumb from '../components/Breadcrumb';
+import Comments from '../components/Comments';
+import NewComment from '../components/NewComment';
 
 import { getArticleById } from '../helpers/Articles';
 

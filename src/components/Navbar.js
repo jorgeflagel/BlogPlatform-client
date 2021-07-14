@@ -29,13 +29,11 @@ export default function Navbar(props) {
       };
     });
 
-    const logout = () => {
+    const logout = async () => {
       window.localStorage.removeItem('blog-webpage-jwt');
-      setTimeout(() => {
-        props.setIsLogged(false);
-        props.setUserInfo({});
-        history.push('./');
-      }, 300)
+      await props.setIsLogged(false);
+      await props.setUserInfo({});
+      history.push('./');
     }
 
     return (

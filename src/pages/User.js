@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import IsLoading from './IsLoading'
-import Breadcrumb from './Breadcrumb';
-import Articles from './Articles';
+import IsLoading from '../components/IsLoading'
+import Breadcrumb from '../components/Breadcrumb';
+import Articles from '../components/Articles';
+
 import { getUserByName } from '../helpers/Users';
 
 export default function User({userInfo}) {

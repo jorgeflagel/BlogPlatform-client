@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from "react-router-dom";
+
 import { editArticle, getArticleById } from '../helpers/Articles';
 
-export default function EditArticle() {
+export default function ArticleEdit() {
 
     let history = useHistory();
     let { id } = useParams();

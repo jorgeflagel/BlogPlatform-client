@@ -1,11 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
-import IsLoading from './IsLoading';
-import Breadcrumb from './Breadcrumb';
+import IsLoading from '../components/IsLoading';
+import Breadcrumb from '../components/Breadcrumb';
 import { getArticleAll } from '../helpers/Articles';
 
-export default function Articles({ userInfo, query, showBreadcrumb }) {
+export default function ArticleAll({ userInfo, query, showBreadcrumb }) {
 
     let [articles, setArticles] = useState([]);
     let [error, setError] = useState(null);
@@ -16,8 +16,6 @@ export default function Articles({ userInfo, query, showBreadcrumb }) {
             setError(null);
             setIsLoading(true);
             let [error, data] = await getArticleAll(query);
-            console.log(error);
-            console.log(data);
             setError(error);
             setArticles(data);
             setIsLoading(false);

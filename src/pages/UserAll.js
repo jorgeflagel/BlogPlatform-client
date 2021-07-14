@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import IsLoading from './IsLoading';
-import Breadcrumb from './Breadcrumb';
+import IsLoading from '../components/IsLoading';
+import Breadcrumb from '../components/Breadcrumb';
+
 import { getUserAll } from '../helpers/Users';
 
-export default function Users() {
+export default function UserAll() {
     
     let [error, setError] = useState(null);
     let [isLoading, setIsLoading] = useState(false);

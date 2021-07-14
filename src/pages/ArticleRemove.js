@@ -3,11 +3,11 @@ import { Link, useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Markdown from 'markdown-to-jsx';
 
-import IsLoading from './IsLoading'
-import Breadcrumb from './Breadcrumb';
+import IsLoading from '../components/IsLoading'
+import Breadcrumb from '../components/Breadcrumb';
 import { getArticleById, removeArticle } from '../helpers/Articles';
 
-export default function RemoveArticle() { 
+export default function ArticleRemove() { 
 
     let { id } = useParams();
     let history = useHistory();

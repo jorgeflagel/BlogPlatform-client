@@ -10,17 +10,19 @@ import {
 
 // impoting components
 import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Users from './components/Users';
-import Articles from './components/Articles';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import User from './components/User';
-import Article from './components/Article'; 
-import NewArticle from './components/NewArticle';
-import EditUser from './components/EditUser';
-import EditArticle from './components/EditArticle';
-import RemoveArticle from './components/RemoveArticle';
+
+import Home from './pages/Home';
+import ArticleAll from './pages/ArticleAll';
+import Article from './pages/Article'; 
+import ArticleNew from './pages/ArticleNew';
+import ArticleEdit from './pages/ArticleEdit';
+import ArticleRemove from './pages/ArticleRemove';
+import UserAll from './pages/UserAll';
+import User from './pages/User';
+import UserEdit from './pages/UserEdit';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+
 
 
 function App() {
@@ -40,7 +42,6 @@ function App() {
       }})
       .then(resp => resp.json())  
       .then(data => {
-          console.log(data);
           setUserInfo(data);
       })
     }
@@ -60,28 +61,28 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/newarticle">
-            <NewArticle />
+            <ArticleNew />
           </Route>
           <Route exact path="/removearticle/:id">
-            <RemoveArticle />
-          </Route>
-          <Route exact path="/editmyprofile">
-            <EditUser userInfo={userInfo} setUserInfo={setUserInfo}/>
+            <ArticleRemove />
           </Route>
           <Route exact path="/myuser/articles/:id">
-            <EditArticle />
+            <ArticleEdit />
           </Route>
           <Route exact path="/articles">
-            <Articles userInfo={userInfo} query={{}} showBreadcrumb={true}/>
+            <ArticleAll userInfo={userInfo} query={{}} showBreadcrumb={true}/>
           </Route>
           <Route exact path="/articles/:id">
             <Article userInfo={userInfo} />
           </Route>
           <Route exact path="/users">
-            <Users />
+            <UserAll />
           </Route>
           <Route path="/users/:username">
             <User setIsLogged={setIsLogged} userInfo={userInfo}/>
+          </Route>
+          <Route exact path="/editmyprofile">
+            <UserEdit userInfo={userInfo} setUserInfo={setUserInfo}/>
           </Route>
           <Route path="/login">
             <Login setIsLogged={setIsLogged} setUserInfo={setUserInfo}/>
