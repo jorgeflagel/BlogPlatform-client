@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import IsLoading from '../components/IsLoading';
 import Breadcrumb from '../components/Breadcrumb';
@@ -12,6 +12,8 @@ export default function UserAll() {
     let [isLoading, setIsLoading] = useState(false);
     let [users, setUsers] = useState([]);
 
+    const history = useHistory();
+
     useEffect(() => {
         (async () => {
             setIsLoading(true);
@@ -23,16 +25,15 @@ export default function UserAll() {
         })()
     }, [])
 
+    const handleClick = (e) => history.push(`/users/${e.currentTarget.dataset.username}`)
+
     const userList = users.map((user) =>
-        <li className="list-group-item" key={user._id}>
+        <li className="list-group-item" key={user._id} onClick={handleClick}data-username={user.username} style={{cursor: "pointer"}}>
                 <div className="row align-items-center">
-                    <div className='col-12 col-md-9'>
-                        <h3><Link to={`/users/${user.username}`}>@{user.username}</Link></h3>
+                    <div className='col-12'>
+                        <h3>@{user.username}</h3>
                         <h4>{user.position}</h4>
                         <p>{user.resume}</p>
-                    </div>
-                    <div className='col-12 col-md-3'>
-                        <Link to={`/users/${user.username}`} className="btn btn-primary">More...</Link>   
                     </div>
                 </div>   
             </li>

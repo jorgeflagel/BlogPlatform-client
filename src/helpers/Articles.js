@@ -69,10 +69,3 @@ export function removeArticle(id) {
     .then(data => [null, data])
     .catch(err => [err, null]);
 }
-
-function editComment() {
-}
-
-function withLoading() {
-    
-}

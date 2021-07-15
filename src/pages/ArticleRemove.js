@@ -32,7 +32,8 @@ export default function ArticleRemove() {
     const handleRemove = async (e) => {
         setError(null);
 
-        let [error, data] = await removeArticle(id);
+        let article = await removeArticle(id);
+        let error = article[0] 
         if (error) setError(error);
         else history.push('/articles');
     }

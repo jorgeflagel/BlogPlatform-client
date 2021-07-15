@@ -20,7 +20,7 @@ export default function Comments({ articleId, userInfo, setComments, comments })
 
             setIsLoading(false);
         })();
-    }, [])
+    }, [articleId, setComments])
 
     const commentList = comments.map((comment) =>
             <li className="list-group-item" key={comment._id}>

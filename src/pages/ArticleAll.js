@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
 
 import IsLoading from '../components/IsLoading';
 import Breadcrumb from '../components/Breadcrumb';
+import ArticleList from '../components/ArticleList';
 import { getArticleAll } from '../helpers/Articles';
 
 export default function ArticleAll({ userInfo, query, showBreadcrumb }) {
@@ -20,30 +20,7 @@ export default function ArticleAll({ userInfo, query, showBreadcrumb }) {
             setArticles(data);
             setIsLoading(false);
         })();
-    }, [])
-
-    const articleList = articles.map((article) =>
-            <li className="list-group-item" key={article._id}>
-                <div className="row align-items-center">
-                    <div className='col-12 col-md-9'>
-                        <p><Link to={`/users/${article.author.username}`}>@{article.author.username}</Link></p>
-                        <p>{article.author.position}</p>
-                        <h3>{article.title}</h3>
-                        <p>{article.updatedAt}</p>
-                        <p>{article.resume}</p>
-                    </div>
-                    <div className='col-12 col-md-3 d-flex flex-column'>
-                        <Link to={`/articles/${article._id}`} className="btn btn-primary">Read Article</Link>   
-                        {article.author._id === userInfo._id 
-                            ?   <>
-                                    <Link to={`/myuser/articles/${article._id}`} className="btn btn-info mt-2">Edit Article</Link>
-                                    <Link to={`/removearticle/${article._id}`} className="btn btn-danger mt-2">Remove Article</Link>
-                                </>
-                            :   null}
-                    </div>
-                </div>   
-            </li>
-    );
+    }, [query])
 
     return (
         <div className='container-fluid'>
@@ -56,9 +33,7 @@ export default function ArticleAll({ userInfo, query, showBreadcrumb }) {
                 ?    <></>
                 :   <div className='container'>
                         <h1>Articles</h1>
-                        <ul className="list-group list-group-flush text-start">
-                            {articleList}
-                        </ul>
+                        <ArticleList articles={articles} userInfo={userInfo} withAuthorInfo={true}/>
                     </div>
             }
             {isLoading && <IsLoading />}
