@@ -12,7 +12,8 @@ export default function UserEdit({ userInfo, setUserInfo }) {
     const [email, setEmail] = useState(userInfo.email);
     const [position, setPosition] = useState(userInfo.position);
     const [resume, setResume] = useState(userInfo.resume);
-    const [image, setImage] = useState()
+    const [fileInputState, setFileInputState] = useState('');
+    const [image, setImage] = useState(userInfo.image || null)
 
 
     const handleSubmit = (e) => {
@@ -41,9 +42,17 @@ export default function UserEdit({ userInfo, setUserInfo }) {
 
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = ()  => setImage(reader.result);
+        if(file.size >= 51200) {
+            setFileInputState("");
+            setImage(null);
+            alert("The image size must be less than 50 mb");
+        }
+        else {
+            setFileInputState(e.target.value);
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = ()  => setImage(reader.result);
+        }
     }
 
     return (
@@ -52,11 +61,12 @@ export default function UserEdit({ userInfo, setUserInfo }) {
             <form className="container px-5" onSubmit={handleSubmit}>
             <h1>Edit User Information</h1>
             <div className="mb-3">
-                <label htmlFor="profile-image" className="form-label col-12">Your Profile Image</label>
-                <input type="file" id="profile-image" name="image" onChange={handleFileInputChange}/>
+                <label htmlFor="profile-image" className="form-label col-12 col-lg-6">Your Profile Image</label>
+                <div className="col-12">
+                    {image && <img className="m-5" src={image} alt="profileImage" width="200" style={{borderRadius: "50%"}}/>}
+                    <input className="col-12 col-lg-6" type="file" id="profile-image" name="image" onChange={handleFileInputChange} accept="image/*" value={fileInputState}/>
+                </div> 
             </div>
-            {image && <img className="m-5" src={image} alt="profileImage" width="200" style={{borderRadius: "50%"}}/>}
-
             <div className="mb-3">
                 <label htmlFor="username" className="form-label">Username</label>
                 <input type="text" className="form-control" id="username" placeholder="Your username" 
