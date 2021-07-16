@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 
 
@@ -13,8 +13,11 @@ export default function UserEdit({ userInfo, setUserInfo }) {
     const [position, setPosition] = useState(userInfo.position);
     const [resume, setResume] = useState(userInfo.resume);
     const [fileInputState, setFileInputState] = useState('');
-    const [image, setImage] = useState(userInfo.image || null)
+    const [image, setImage] = useState(userInfo.profileImageUrl)
 
+    useEffect(() => {
+        setImage(userInfo.profileImageUrl)
+    }, [userInfo.profileImageUrl])
 
     const handleSubmit = (e) => {
         setError(null);
@@ -27,7 +30,7 @@ export default function UserEdit({ userInfo, setUserInfo }) {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
         }})
-        .then(resp => resp.json())
+        .then(resp => resp.ok ? resp.json() : Promise.reject(resp))
         .then(data => {
             if(data.message){
                 setError(data.message);
@@ -37,7 +40,7 @@ export default function UserEdit({ userInfo, setUserInfo }) {
                 history.push(`/users/${data.username}`);
             }
         })
-        .catch(err => setError(err.message));
+        .catch(err => setError(err.statusText));
     }
 
     const handleFileInputChange = (e) => {
@@ -63,7 +66,7 @@ export default function UserEdit({ userInfo, setUserInfo }) {
             <div className="mb-3">
                 <label htmlFor="profile-image" className="form-label col-12 col-lg-6">Your Profile Image</label>
                 <div className="col-12">
-                    {image && <img className="m-5" src={image} alt="profileImage" width="200" style={{borderRadius: "50%"}}/>}
+                    {image && <img className="m-5 rounded-circle" src={image} alt="profileImage" width="200"/>}
                     <input className="col-12 col-lg-6" type="file" id="profile-image" name="image" onChange={handleFileInputChange} accept="image/*" value={fileInputState}/>
                 </div> 
             </div>
@@ -77,7 +80,7 @@ export default function UserEdit({ userInfo, setUserInfo }) {
                 <input type="email" className="form-control" id="email" placeholder="Your email..." 
                     name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             </div>
-            <div className="mb-3">
+            <div className="mb-3">uploadedResponse.url
                 <label htmlFor="position" className="form-label">Your Position</label>
                 <input type="text" className="form-control" id="position" placeholder="Your position..." 
                     name="position" value={position} onChange={(e) => setPosition(e.target.value)}/>

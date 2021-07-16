@@ -16,8 +16,13 @@ export default function ArticleList({articles, userInfo, withAuthorInfo}) {
                     <div className="row align-items-center">
                         {withAuthorInfo 
                             ?   <>
-                                    <p><Link to={`/users/${article.author.username}`}>@{article.author.username}</Link></p>
-                                    <p>{article.author.position}</p>
+                                    <div className="d-flex flex-column flex-sm-row align-items-center">
+                                        <img src={article.author.profileImageUrl} alt="profileimage" className="rounded-circle me-3" width={100}/>
+                                        <div>
+                                            <p><Link to={`/users/${article.author.username}`}>@{article.author.username}</Link></p>
+                                            <p>{article.author.position}</p>
+                                        </div>
+                                    </div>                                    
                                 </>
                             : null
                         }

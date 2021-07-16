@@ -40,8 +40,9 @@ function App() {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
       }})
-      .then(resp => resp.json())  
+      .then(resp => resp.json())
       .then(data => {
+        console.log(data);
           setUserInfo(data);
       })
     }

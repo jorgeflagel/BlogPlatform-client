@@ -13,10 +13,13 @@ export default function Comments({ articleId, userInfo, setComments, comments })
     useEffect(() => {
         (async () => {
             setIsLoading(true);
+            setError(null);
 
             let [error, data] = await getCommentsFromArticle(articleId);
+            console.log(error);
+            console.log(data);
             if (error) setError(error);
-            else setComments((comments) => [...comments, ...data]);
+            else setComments(data);
 
             setIsLoading(false);
         })();
@@ -40,13 +43,17 @@ export default function Comments({ articleId, userInfo, setComments, comments })
                     </div>
                 </div>   
             </li>
-    );
+    );  useEffect(() => {
+        (async () => {
+            
+        }) ()
+    })
 
     return (
         <div className='container-fluid'>
             <div className='container'>
                 <h3>Comments</h3>
-                    {error && <div className="alert alert-danger m-4" role="alert">{error}</div>}
+                    {error && <div className="alert alert-danger m-4" role="alert">{error.message}</div>}
                     {comments.length
                         ?   
                                 <ul className="list-group list-group-flush text-start">

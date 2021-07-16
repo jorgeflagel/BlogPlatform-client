@@ -31,6 +31,7 @@ export default function UserAll() {
         <li className="list-group-item" key={user._id} onClick={handleClick}data-username={user.username} style={{cursor: "pointer"}}>
                 <div className="row align-items-center">
                     <div className='col-12'>
+                        <img src={user.profileImageUrl} alt="profileimage" className="rounded-circle"/>
                         <h3>@{user.username}</h3>
                         <h4>{user.position}</h4>
                         <p>{user.resume}</p>

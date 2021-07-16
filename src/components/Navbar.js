@@ -5,7 +5,7 @@ import Offcanvas from './Offcanvas';
 
 
 
-export default function Navbar(props) {
+export default function Navbar({setIsLogged, setUserInfo, userInfo, isLogged}) {
 
     let history = useHistory();
     
@@ -31,8 +31,8 @@ export default function Navbar(props) {
 
     const logout = async () => {
       window.localStorage.removeItem('blog-webpage-jwt');
-      await props.setIsLogged(false);
-      await props.setUserInfo({});
+      await setIsLogged(false);
+      await setUserInfo({});
       history.push('./');
     }
 
@@ -45,8 +45,8 @@ export default function Navbar(props) {
               <span className="navbar-toggler-icon"></span>
             </button>
             
-            {props.isLogged ? 
-                    <Offcanvas logout={logout} userInfo={props.userInfo}/>
+            {isLogged 
+                ? <Offcanvas logout={logout} userInfo={userInfo}/>
                 : <div className="order-lg-last d-flex flex-column flex-md-row">
                     <button type="button" className="btn btn-outline-primary m-1" onClick={() => history.push('/login')}>Login</button>
                     <button type="button" className="btn btn-outline-info m-1" onClick={() => history.push('/signup')}>Signup</button>

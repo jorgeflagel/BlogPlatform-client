@@ -36,13 +36,19 @@ export default function Article({ userInfo }) {
                         <article className='container text-start offset-md-2 col-12 col-md-8'>
                             <div className='border-bottom'>
                                 <h1 className='text-center'>{article.title}</h1>
-                                <Link to={`/users/${article.author.username}`}>@{article.author.username}</Link>
-                                <p>{article.author.position}</p>{article.author._id === userInfo._id 
-                                ?   <div className='mb-3'>
-                                        <Link to={`/myuser/articles/${article._id}`} className="btn btn-info mt-2 me-3">Edit Article</Link>
-                                        <Link to={`/removearticle/${article._id}`} className="btn btn-danger mt-2">Remove Article</Link>
-                                    </div>
-                                :   null}
+                                <div className="d-flex flex-column flex-sm-row align-items-center">
+                                        <img src={article.author.profileImageUrl} alt="profileimage" className="rounded-circle me-3" width={100}/>
+                                        <div>
+                                            <p><Link to={`/users/${article.author.username}`}>@{article.author.username}</Link></p>
+                                            <p>{article.author.position}</p>
+                                </div>    
+                                </div>
+                                {article.author._id === userInfo._id 
+                                    ?   <div className='mb-3 d-flex align-items-center justify-content-center justify-content-sm-start'>
+                                            <Link to={`/myuser/articles/${article._id}`} className="btn btn-info mt-2 me-3">Edit Article</Link>
+                                            <Link to={`/removearticle/${article._id}`} className="btn btn-danger mt-2">Remove Article</Link>
+                                        </div>
+                                    :   null}
                             </div>
                             <Markdown className='pt-5'>{article.text}</Markdown>
                             <hr/>

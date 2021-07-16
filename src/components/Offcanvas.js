@@ -27,13 +27,24 @@ export default function Offcanvas({logout, userInfo}) {
 
     return (
         <>
-            <button ref={navButton} className="btn btn-primary ms-3 order-lg-last rounded-circle" type="button" onClick={() => toggleOffcanvas(!isOffcanvasShowing)}><FontAwesomeIcon icon={faUser} size='3x'/></button>
+            <button ref={navButton} className={`btn ms-3 ${userInfo.profileImageUrl ? "": "btn-primary"} order-lg-last rounded-circle`} type="button" onClick={() => toggleOffcanvas(!isOffcanvasShowing)}>
+                {userInfo.profileImageUrl 
+                ? <img src={userInfo.profileImageUrl} alt="profileimage" className="rounded-circle me-3" width={60}/>
+                : <FontAwesomeIcon icon={faUser} size='3x'/>}
+            </button>
             <div ref={node} className={`offcanvas offcanvas-end ${isOffcanvasShowing ? 'show' : ''}`} style={{visibility: `${isOffcanvasShowing ? 'visible' : 'hiden'}`}} tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                <div className={`offcanvas-header flex-column border-bottom`}>
-                    <h5 id="offcanvasRightLabel">@{userInfo.username}</h5>
-                    <p>{userInfo.email}</p>
+                <div className={`offcanvas-header d-flex border-bottom`}>
+                    {userInfo.profileImageUrl
+                        ? <img src={userInfo.profileImageUrl} alt="profileimage" className="rounded-circle me-3" width={60}/>
+                        : null
+                    }
+                    <div className={`flex-column`}>
+                        <h5 id="offcanvasRightLabel">@{userInfo.username}</h5>
+                        <p>{userInfo.email}</p>
+                    </div>
                     <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" onClick={() => toggleOffcanvas(!isOffcanvasShowing)}></button>
                 </div>
+                
                 <div className='offcanvas-body'>
                     <ul className='list-group list-group-flush text-start'>
                         <li className='list-group-item'>

@@ -51,6 +51,7 @@ export default function User({userInfo, query}) {
             :   user
                 ?   <>    
                         <div className='border-bottom'>
+                            <img src={user.profileImageUrl} alt="profileimage" className="rounded-circle"/>
                             <h1>@{user.username}</h1>
                             <h2>{user.position}</h2>
                             <p>{user.resume}</p>
